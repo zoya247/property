@@ -4,7 +4,7 @@
 
 # Clone Website
 
-You are about to reverse-engineer and rebuild **the target URL provided by the user** as pixel-perfect clones.
+You are about to reverse-engineer and rebuild **the arguments provided by the user** as pixel-perfect clones.
 
 When multiple URLs are provided, process them independently and in parallel where possible, while keeping each site's extraction artifacts isolated in dedicated folders (for example, `docs/research/<hostname>/`).
 
@@ -12,7 +12,7 @@ This is not a two-phase process (inspect then build). You are a **foreman walkin
 
 ## Scope Defaults
 
-The target is whatever page `the target URL provided by the user` resolves to. Clone exactly what's visible at that URL. Unless the user specifies otherwise, use these defaults:
+The target is whatever page `the arguments provided by the user` resolves to. Clone exactly what's visible at that URL. Unless the user specifies otherwise, use these defaults:
 
 - **Fidelity level:** Pixel-perfect — exact match in colors, spacing, typography, animations
 - **In scope:** Visual layout and styling, component structure and interactions, responsive design, mock data for demo purposes
@@ -24,7 +24,7 @@ If the user provides additional instructions (specific fidelity level, customiza
 ## Pre-Flight
 
 1. **Browser automation is required.** Check for available browser MCP tools (Chrome MCP, Playwright MCP, Browserbase MCP, Puppeteer MCP, etc.). Use whichever is available — if multiple exist, prefer Chrome MCP. If none are detected, ask the user which browser tool they have and how to connect it. This skill cannot work without browser automation.
-2. Parse `the target URL provided by the user` as one or more URLs. Normalize and validate each URL; if any are invalid, ask the user to correct them before proceeding. For each valid URL, verify it is accessible via your browser MCP tool.
+2. Parse `the arguments provided by the user` as one or more URLs. Normalize and validate each URL; if any are invalid, ask the user to correct them before proceeding. For each valid URL, verify it is accessible via your browser MCP tool.
 3. Verify the base project builds: `npm run build`. The Next.js + shadcn/ui + Tailwind v4 scaffold should already be in place. If not, tell the user to set it up first.
 4. Create the output directories if they don't exist: `docs/research/`, `docs/research/components/`, `docs/design-references/`, `scripts/`. For multiple clones, also prepare per-site folders like `docs/research/<hostname>/` and `docs/design-references/<hostname>/`.
 5. When working with multiple sites in one command, optionally confirm whether to run them in parallel (recommended, if resources allow) or sequentially to avoid overload.

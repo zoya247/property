@@ -1,6 +1,6 @@
 ---
-description: "Reverse-engineer and clone any website as a pixel-perfect replica"
-argument-hint: "<url>"
+description: "Reverse-engineer and clone one or more websites in one shot — extracts assets"
+argument-hint: "<args>"
 ---
 <!-- AUTO-GENERATED from .claude/skills/clone-website/SKILL.md — do not edit directly.
      Run `node scripts/sync-skills.mjs` to regenerate. -->
