@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zoya Homes — Luxury Short-Term Rental in London Bridge</title>
+<meta name="description" content="Book Zoya Homes direct and save. A luxury 2-bed apartment steps from London Bridge, Borough Market and The Shard. No fees, instant confirmation." />
+
+<!-- Open Graph / social preview -->
+<meta property="og:title" content="Zoya Homes — Luxury Short-Term Rental in London Bridge" />
+<meta property="og:description" content="Stunning 2-bed apartment near London Bridge. Book direct with Zoya Homes for the best rate, no fees, flexible stays." />
+<meta property="og:image" content="img/hero.jpg" />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --ink:#1c1b19;
+    --ink-soft:#4a4742;
+    --cream:#faf7f2;
+    --cream-2:#f3ede3;
+    --gold:#b08d57;
+    --gold-dark:#947338;
+    --line:#e4ddd0;
+    --white:#ffffff;
+    --shadow:0 18px 50px -20px rgba(28,27,25,.35);
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.1;letter-spacing:.2px;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-dark);font-weight:600;}
+
+  /* Buttons */
+  .btn{
+    display:inline-flex;align-items:center;gap:.55em;justify-content:center;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:.95rem;letter-spacing:.02em;
+    padding:15px 30px;border-radius:999px;cursor:pointer;border:1.5px solid transparent;
+    transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;
+  }
+  .btn-gold{background:var(--gold);color:#fff;box-shadow:0 10px 24px -10px rgba(176,141,87,.8);}
+  .btn-gold:hover{background:var(--gold-dark);transform:translateY(-2px);}
+  .btn-ghost{background:transparent;border-color:rgba(255,255,255,.6);color:#fff;}
+  .btn-ghost:hover{background:rgba(255,255,255,.12);}
+  .btn-outline{background:transparent;border-color:var(--ink);color:var(--ink);}
+  .btn-outline:hover{background:var(--ink);color:#fff;}
+
+  /* Nav */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;transition:background .3s ease,box-shadow .3s ease,padding .3s ease;
+  }
+  header.nav.scrolled{background:rgba(250,247,242,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);padding:12px 32px;}
+  .brand{display:flex;align-items:center;gap:12px;color:#fff;transition:color .3s ease;}
+  header.nav.scrolled .brand{color:var(--ink);}
+  .brand .mark{width:38px;height:38px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.2rem;}
+  .brand .name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;letter-spacing:.04em;}
+  .brand .name small{display:block;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;opacity:.75;margin-top:-2px;}
+  .nav-cta{display:flex;align-items:center;gap:22px;}
+  .nav-links{display:flex;gap:26px;font-size:.86rem;color:#fff;transition:color .3s ease;}
+  header.nav.scrolled .nav-links{color:var(--ink-soft);}
+  .nav-links a{position:relative;}
+  .nav-links a:hover{color:var(--gold);}
+  .nav-book{font-size:.82rem;padding:11px 22px;}
+
+  /* Hero */
+  .hero{position:relative;height:100vh;min-height:620px;display:flex;align-items:flex-end;color:#fff;overflow:hidden;}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,16,.45) 0%,rgba(20,18,16,.05) 35%,rgba(20,18,16,.75) 100%);}
+  .hero-inner{position:relative;z-index:2;padding-bottom:64px;}
+  .hero .eyebrow{color:#e9d8b8;}
+  .hero h1{font-size:clamp(2.6rem,6vw,4.6rem);margin:14px 0 10px;max-width:14ch;text-shadow:0 2px 30px rgba(0,0,0,.3);}
+  .hero .sub{font-size:1.05rem;font-weight:300;max-width:46ch;opacity:.95;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:22px;align-items:center;margin:26px 0 30px;font-size:.92rem;}
+  .hero-meta .dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.6);}
+  .stars{color:#f0c674;letter-spacing:2px;}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;}
+  .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;opacity:.8;display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .scroll-hint span{width:1px;height:34px;background:rgba(255,255,255,.6);animation:pulse 1.8s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.6);}50%{opacity:1;transform:scaleY(1);}}
+
+  /* Quick facts bar */
+  .facts{background:var(--white);border-bottom:1px solid var(--line);}
+  .facts .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 56px;padding:30px 24px;text-align:center;}
+  .fact{display:flex;flex-direction:column;gap:2px;min-width:90px;}
+  .fact b{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:600;line-height:1;}
+  .fact span{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);}
+
+  /* Sections */
+  section{padding:88px 0;}
+  .section-head{max-width:640px;margin-bottom:46px;}
+  .section-head h2{font-size:clamp(2rem,4vw,3rem);margin:12px 0 14px;}
+  .section-head p{color:var(--ink-soft);font-size:1.05rem;font-weight:300;}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;}
+  .about-copy p{margin-bottom:18px;color:var(--ink-soft);}
+  .about-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 22px;margin-top:26px;}
+  .about-list li{position:relative;padding-left:26px;font-size:.95rem;}
+  .about-list li::before{content:"✦";position:absolute;left:0;color:var(--gold);}
+  .about-figure{position:relative;}
+  .about-figure img{border-radius:var(--radius);box-shadow:var(--shadow);height:520px;width:100%;object-fit:cover;}
+  .about-figure .tag{position:absolute;bottom:-22px;left:-22px;background:var(--white);padding:18px 26px;border-radius:12px;box-shadow:var(--shadow);}
+  .about-figure .tag b{font-family:'Cormorant Garamond',serif;font-size:1.5rem;display:block;}
+  .about-figure .tag span{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);}
+
+  /* Gallery */
+  .gallery{background:var(--cream-2);}
+  .grid-gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px;}
+  .grid-gallery figure{overflow:hidden;border-radius:10px;cursor:pointer;position:relative;}
+  .grid-gallery img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+  .grid-gallery figure:hover img{transform:scale(1.07);}
+  .grid-gallery figure::after{content:"";position:absolute;inset:0;background:rgba(28,27,25,0);transition:background .3s ease;}
+  .grid-gallery figure:hover::after{background:rgba(28,27,25,.12);}
+  .g-tall{grid-row:span 2;}
+  .g-wide{grid-column:span 2;}
+  .gallery-more{text-align:center;margin-top:34px;}
+
+  /* Amenities */
+  .amenities-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .amenity{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:22px 20px;display:flex;align-items:center;gap:14px;font-size:.92rem;font-weight:500;transition:transform .2s ease,box-shadow .2s ease;}
+  .amenity:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .amenity .ic{font-size:1.4rem;width:34px;text-align:center;}
+
+  /* Reviews */
+  .reviews{background:var(--ink);color:var(--cream);}
+  .reviews .section-head h2{color:var(--cream);}
+  .reviews .section-head p{color:rgba(250,247,242,.7);}
+  .rev-score{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;}
+  .rev-score b{font-family:'Cormorant Garamond',serif;font-size:3.4rem;line-height:1;}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .rev-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:14px;}
+  .rev-card .stars{font-size:.9rem;}
+  .rev-card p{font-size:.95rem;font-weight:300;color:rgba(250,247,242,.92);font-style:italic;}
+  .rev-card .who{margin-top:auto;display:flex;align-items:center;gap:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1);}
+  .rev-card .who .av{width:38px;height:38px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-weight:600;color:#fff;}
+  .rev-card .who small{display:block;color:rgba(250,247,242,.6);font-size:.78rem;}
+
+  /* Location */
+  .loc-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center;}
+  .loc-list{list-style:none;margin-top:24px;display:flex;flex-direction:column;gap:14px;}
+  .loc-list li{display:flex;gap:14px;align-items:flex-start;font-size:.95rem;color:var(--ink-soft);}
+  .loc-list .ic{color:var(--gold);font-size:1.1rem;}
+  .map-frame{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);}
+  .map-frame iframe{display:block;width:100%;height:420px;border:0;filter:grayscale(.2) contrast(1.02);}
+
+  /* Booking CTA */
+  .booking{background:linear-gradient(135deg,#241f19,#3a2f22);color:#fff;text-align:center;position:relative;overflow:hidden;}
+  .booking::before{content:"";position:absolute;inset:0;background:url('img/bookbg.jpg') center/cover;opacity:.14;}
+  .booking .wrap{position:relative;z-index:2;max-width:720px;}
+  .booking h2{font-size:clamp(2.2rem,4.5vw,3.4rem);margin-bottom:16px;}
+  .booking p{font-size:1.08rem;font-weight:300;opacity:.9;margin-bottom:14px;}
+  .booking .price{font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin-bottom:30px;}
+  .booking .price b{color:#f0c674;}
+  .booking-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .booking .fineprint{margin-top:22px;font-size:.8rem;opacity:.6;}
+
+  /* Footer */
+  footer{background:var(--cream-2);padding:56px 0 30px;border-top:1px solid var(--line);}
+  .foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;}
+  .foot-brand .name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;}
+  .foot-brand p{color:var(--ink-soft);font-size:.9rem;margin-top:8px;max-width:34ch;}
+  .foot-col h4{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px;}
+  .foot-col a{display:block;font-size:.92rem;margin-bottom:10px;color:var(--ink-soft);}
+  .foot-col a:hover{color:var(--gold);}
+  .foot-bottom{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:.8rem;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  /* Sticky mobile book bar */
+  .mobile-bar{position:fixed;bottom:0;left:0;right:0;z-index:60;background:var(--white);border-top:1px solid var(--line);padding:12px 18px;display:none;align-items:center;justify-content:space-between;gap:14px;box-shadow:0 -8px 30px -16px rgba(0,0,0,.3);}
+  .mobile-bar .mp{font-family:'Cormorant Garamond',serif;font-size:1.1rem;}
+  .mobile-bar .mp small{display:block;font-family:'Inter';font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);}
+  .mobile-bar .btn{flex:1;padding:13px;}
+
+  /* Lightbox */
+  .lightbox{position:fixed;inset:0;z-index:100;background:rgba(15,13,11,.95);display:none;align-items:center;justify-content:center;}
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:90vw;max-height:84vh;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.6);}
+  .lb-close{position:absolute;top:22px;right:28px;color:#fff;font-size:2rem;cursor:pointer;line-height:1;opacity:.8;}
+  .lb-close:hover{opacity:1;}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:2.6rem;cursor:pointer;padding:0 22px;opacity:.7;user-select:none;}
+  .lb-nav:hover{opacity:1;}
+  .lb-prev{left:0;} .lb-next{right:0;}
+  .lb-count{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.8);font-size:.85rem;letter-spacing:.1em;}
+
+  @media(max-width:920px){
+    .about-grid,.loc-grid{grid-template-columns:1fr;gap:40px;}
+    .about-figure img{height:380px;}
+    .amenities-grid{grid-template-columns:repeat(2,1fr);}
+    .rev-grid{grid-template-columns:1fr;}
+    .grid-gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px;}
+    .nav-links{display:none;}
+  }
+  @media(max-width:600px){
+    .wrap{padding:0 18px;}
+    header.nav{padding:14px 18px;}
+    section{padding:60px 0;}
+    .hero{height:92vh;}
+    .about-list{grid-template-columns:1fr;}
+    .mobile-bar{display:flex;}
+    .nav-book{display:none;}
+    body{padding-bottom:72px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <a href="#top" class="brand">
+    <span class="mark">Z</span>
+    <span class="name">Zoya Homes<small>London Bridge</small></span>
+  </a>
+  <div class="nav-cta">
+    <nav class="nav-links">
+      <a href="#about">The Home</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#location">Location</a>
+    </nav>
+    <a href="#book" class="btn btn-gold nav-book">Book Direct</a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <img src="img/hero.jpg" alt="The Shard Apartment living space" />
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Borough · SE1 · Central London</p>
+    <h1>The Shard Apartment</h1>
+    <p class="sub">A bright, spacious two-bedroom home moments from London Bridge, Borough Market and the river — designed for stays that feel like living, not visiting.</p>
+    <div class="hero-meta">
+      <span><span class="stars">★★★★★</span> &nbsp;4.8 · 5 reviews</span>
+      <span class="dot"></span>
+      <span>Sleeps 5 · 2 bed · 2 bath</span>
+      <span class="dot"></span>
+      <span>Superhost-quality hosting</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#book" class="btn btn-gold">Check Availability</a>
+      <a href="#gallery" class="btn btn-ghost">View the Home</a>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll<span></span></div>
+</section>
+
+<!-- ===== QUICK FACTS ===== -->
+<div class="facts">
+  <div class="wrap">
+    <div class="fact"><b>5</b><span>Guests</span></div>
+    <div class="fact"><b>2</b><span>Bedrooms</span></div>
+    <div class="fact"><b>4</b><span>Beds</span></div>
+    <div class="fact"><b>2</b><span>Bathrooms</span></div>
+    <div class="fact"><b>Zone 1</b><span>Location</span></div>
+    <div class="fact"><b>3 min</b><span>To the Tube</span></div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <p class="eyebrow">Your London Home</p>
+      <h2>Space to live, work &amp; unwind</h2>
+      <p>Stay in the heart of SE1, just minutes from London Bridge, Borough Market and The Shard. This bright, fully furnished two-bed, two-bath apartment is made for professionals, relocations and longer stays — comfortable, well-connected and genuinely spacious.</p>
+      <p>An open-plan living area with a dedicated dining space flows into a fully equipped modern kitchen. Two bedrooms plus a sofa bed sleep up to five, with fresh linen, fast Wi-Fi, a washer/dryer and everything you need to settle in from day one.</p>
+      <ul class="about-list">
+        <li>Two spacious bedrooms</li>
+        <li>En-suite + family bathroom</li>
+        <li>Open-plan living &amp; dining</li>
+        <li>Fully equipped kitchen</li>
+        <li>Fast &amp; reliable Wi-Fi</li>
+        <li>Smart TV with Netflix</li>
+        <li>Washer/dryer for long stays</li>
+        <li>Secure Zone 1 location</li>
+      </ul>
+    </div>
+    <div class="about-figure">
+      <img src="img/about.jpg" alt="Bright open-plan living area" />
+      <div class="tag"><b>SE1</b><span>Steps from The Shard</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The Gallery</p>
+      <h2>Take a look inside</h2>
+      <p>Every room photographed and ready — tap any image to explore the full set.</p>
+    </div>
+    <div class="grid-gallery" id="galleryGrid">
+      <figure class="g-wide g-tall"><img src="img/g1.jpg" alt="Living room" /></figure>
+      <figure><img src="img/g2.jpg" alt="Interior" /></figure>
+      <figure><img src="img/g3.jpg" alt="Bedroom" /></figure>
+      <figure><img src="img/g4.jpg" alt="Bedroom" /></figure>
+      <figure><img src="img/g5.jpg" alt="Bedroom" /></figure>
+      <figure class="g-wide"><img src="img/g6.jpg" alt="Kitchen" /></figure>
+      <figure><img src="img/g7.jpg" alt="Dining area" /></figure>
+      <figure><img src="img/g8.jpg" alt="Interior" /></figure>
+      <figure><img src="img/g9.jpg" alt="Interior" /></figure>
+      <figure><img src="img/g10.jpg" alt="Interior" /></figure>
+      <figure><img src="img/g11.jpg" alt="Interior" /></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AMENITIES ===== -->
+<section id="amenities">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Everything You Need</p>
+      <h2>Thoughtfully equipped</h2>
+      <p>Stocked for both a weekend escape and a months-long stay.</p>
+    </div>
+    <div class="amenities-grid">
+      <div class="amenity"><span class="ic">📶</span> Fast Wi-Fi</div>
+      <div class="amenity"><span class="ic">🍳</span> Full Kitchen</div>
+      <div class="amenity"><span class="ic">🧺</span> Washer &amp; Dryer</div>
+      <div class="amenity"><span class="ic">📺</span> Smart TV</div>
+      <div class="amenity"><span class="ic">🔥</span> Central Heating</div>
+      <div class="amenity"><span class="ic">🅿️</span> On-site Parking</div>
+      <div class="amenity"><span class="ic">🛗</span> Lift Access</div>
+      <div class="amenity"><span class="ic">🍽️</span> Dishwasher</div>
+      <div class="amenity"><span class="ic">👶</span> Crib Available</div>
+      <div class="amenity"><span class="ic">🌿</span> Private Patio</div>
+      <div class="amenity"><span class="ic">🗓️</span> Long Stays Welcome</div>
+      <div class="amenity"><span class="ic">💼</span> Workspace</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Guest Reviews</p>
+      <div class="rev-score"><b>4.8</b><span class="stars">★★★★★</span></div>
+      <p>From 5 verified guest reviews — cleanliness, communication &amp; location consistently rated 5 stars.</p>
+    </div>
+    <div class="rev-grid">
+      <div class="rev-card">
+        <span class="stars">★★★★★</span>
+        <p>“Zoe was an amazing host, very responsive and accommodating! The property was like a home away from home and the location is great — exactly what you need if you’re staying in Central London!”</p>
+        <div class="who"><span class="av">A</span><div>Airbnb guest<small>May 2026</small></div></div>
+      </div>
+      <div class="rev-card">
+        <span class="stars">★★★★★</span>
+        <p>“Excellent stay. The apartment was exactly as described — very clean, comfortable and well located. Communication was clear and check-in was simple. Would definitely stay again and highly recommend.”</p>
+        <div class="who"><span class="av">J</span><div>Airbnb guest<small>May 2026</small></div></div>
+      </div>
+      <div class="rev-card">
+        <span class="stars">★★★★★</span>
+        <p>“Conveniently located between train stations. Zoe and her partner were very helpful and responsive. Kitchen was well equipped and the apartment was spacious, warm and cosy. Highly recommended.”</p>
+        <div class="who"><span class="av">J</span><div>Jake · Airbnb<small>Dec 2025</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOCATION ===== -->
+<section id="location">
+  <div class="wrap loc-grid">
+    <div>
+      <p class="eyebrow">The Neighbourhood</p>
+      <h2>Everything on your doorstep</h2>
+      <p style="color:var(--ink-soft);margin-top:10px;">In the heart of SE1, you’re a short walk from London’s most iconic landmarks — with excellent transport links across the city.</p>
+      <ul class="loc-list">
+        <li><span class="ic">🚇</span> 3 minutes to London Bridge & Borough stations</li>
+        <li><span class="ic">🛍️</span> Walk to Borough Market & riverside dining</li>
+        <li><span class="ic">🏙️</span> Next door to The Shard</li>
+        <li><span class="ic">🎓</span> Near Guy’s Hospital & King’s College London</li>
+        <li><span class="ic">💼</span> Fast links to the City, West End & Canary Wharf</li>
+      </ul>
+    </div>
+    <div class="map-frame">
+      <iframe loading="lazy" title="Location map" src="https://www.openstreetmap.org/export/embed.html?bbox=-0.11%2C51.490%2C-0.074%2C51.510&amp;layer=mapnik&amp;marker=51.4997%2C-0.0923"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BOOKING CTA ===== -->
+<section class="booking" id="book">
+  <div class="wrap">
+    <p class="eyebrow" style="color:#e9d8b8;">Book Direct &amp; Save</p>
+    <h2>Reserve your stay</h2>
+    <p>Book directly with us — no middleman, no platform fees. Check live availability and secure your dates in minutes.</p>
+    <p class="price">From <b>£180/night</b> · best rates guaranteed when you book direct</p>
+    <div class="booking-actions">
+      <!-- ⬇️ Replace the # below with your Hospitable Direct booking link once it's live -->
+      <a href="mailto:zoya@hamzopi.co.uk?subject=Booking%20enquiry%20-%20Zoya%20Homes&body=Hi%20Zoya%2C%20I%27d%20like%20to%20book%20the%20London%20Bridge%20apartment.%0A%0ACheck-in%20date%3A%0ACheck-out%20date%3A%0ANumber%20of%20guests%3A%0AName%3A%0APhone%3A" id="bookBtn" class="btn btn-gold">Check Availability &amp; Book</a>
+      <a href="mailto:zoya@hamzopi.co.uk?subject=Booking%20enquiry%20-%20The%20Shard%20Apartment" class="btn btn-ghost">Enquire by Email</a>
+    </div>
+    <p class="fineprint">Check-in from 15:00 · Check-out by 11:00 · 2-night minimum · Secure payment via Stripe</p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="name">Zoya Homes</div>
+        <p>Beautiful, well-located London homes for short stays, relocations and longer stays. Book direct for the best rates.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="#about">The Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#location">Location</a>
+      </div>
+      <div class="foot-col">
+        <h4>Book &amp; Contact</h4>
+        <a href="#book">Check Availability</a>
+        <a href="mailto:zoya@hamzopi.co.uk">Email Us</a>
+        <a href="#book">Enquire About Long Stays</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Zoya Homes · London, UK</span>
+      <span>The Shard Apartment · Borough, SE1</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== STICKY MOBILE BAR ===== -->
+<div class="mobile-bar">
+  <div class="mp">£180/night<small>4.8 ★ · 5 reviews</small></div>
+  <a href="#book" class="btn btn-gold">Book Direct</a>
+</div>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox">
+  <span class="lb-close" id="lbClose">&times;</span>
+  <span class="lb-nav lb-prev" id="lbPrev">&#8249;</span>
+  <img id="lbImg" src="" alt="" />
+  <span class="lb-nav lb-next" id="lbNext">&#8250;</span>
+  <span class="lb-count" id="lbCount"></span>
+</div>
+
+<script>
+  // Nav background on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Lightbox
+  const figures = [...document.querySelectorAll('#galleryGrid figure img')];
+  const urls = figures.map(i => i.src);
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCount = document.getElementById('lbCount');
+  let idx = 0;
+  function show(i){
+    idx = (i + urls.length) % urls.length;
+    lbImg.src = urls[idx];
+    lbCount.textContent = (idx+1) + ' / ' + urls.length;
+  }
+  figures.forEach((img,i)=> img.parentElement.addEventListener('click', ()=>{ lb.classList.add('open'); show(i); }));
+  document.getElementById('lbClose').addEventListener('click', ()=> lb.classList.remove('open'));
+  document.getElementById('lbNext').addEventListener('click', e=>{ e.stopPropagation(); show(idx+1); });
+  document.getElementById('lbPrev').addEventListener('click', e=>{ e.stopPropagation(); show(idx-1); });
+  lb.addEventListener('click', e=>{ if(e.target===lb) lb.classList.remove('open'); });
+  document.addEventListener('keydown', e=>{
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') lb.classList.remove('open');
+    if(e.key==='ArrowRight') show(idx+1);
+    if(e.key==='ArrowLeft') show(idx-1);
+  });
+</script>
+</body>
+</html>
