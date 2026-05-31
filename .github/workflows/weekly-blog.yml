@@ -1,0 +1,57 @@
+name: Weekly AI Blog Post
+
+on:
+  schedule:
+    # Every Monday at 09:00 UTC
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: "Custom topic (leave blank for auto-selection)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  generate-post:
+    name: Generate & Commit Blog Post
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: claude/website-promotion-dE6vs
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: my-clone/package-lock.json
+
+      - name: Install Anthropic SDK
+        run: npm install @anthropic-ai/sdk
+        working-directory: my-clone
+
+      - name: Generate blog post
+        id: generate
+        run: node scripts/generate-blog-post.mjs
+        working-directory: my-clone
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CUSTOM_TOPIC: ${{ github.event.inputs.topic }}
+
+      - name: Verify build still passes
+        run: npm run build
+        working-directory: my-clone
+
+      - name: Commit new post
+        run: |
+          git config user.name "London Bridge Stays Bot"
+          git config user.email "bot@londonbridgestays.co.uk"
+          git add my-clone/src/app/blog/posts.ts
+          git diff --staged --quiet || git commit -m "feat(blog): weekly AI post – ${{ steps.generate.outputs.post_title }}"
+          git push
