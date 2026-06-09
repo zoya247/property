@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prebuilt Agent Skills · Property Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment: #F5F1E8;
+    --ink: #1E1D1B;
+    --gold: #C2A56B;
+    --gold-light: #E8D9B8;
+    --gold-dark: #9A7D4A;
+    --muted: #7A7669;
+    --surface: #EFEAD8;
+    --white: #FDFCF8;
+  }
+
+  html, body {
+    background: var(--parchment);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid var(--gold-light);
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold-dark); }
+
+  .nav-cta {
+    display: inline-block;
+    padding: 9px 20px;
+    background: var(--ink);
+    color: var(--parchment);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 1px;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--gold-dark); }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 6rem 2rem 5rem;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 4.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-dark);
+  }
+
+  .hero p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--ink);
+    color: var(--parchment);
+    border: none;
+    border-radius: 1px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-dark); }
+
+  .btn-outline {
+    display: inline-block;
+    padding: 14px 32px;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--gold-light);
+    border-radius: 1px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-dark); }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold-light);
+    margin: 0 auto;
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: var(--surface);
+    border-top: 1px solid var(--gold-light);
+    border-bottom: 1px solid var(--gold-light);
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    text-align: center;
+  }
+
+  .trust-item .number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--gold-dark);
+    line-height: 1;
+  }
+
+  .trust-item .label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 6rem 2rem;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 4rem;
+  }
+
+  .section-header .eyebrow { margin-bottom: 1rem; }
+
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .section-header h2 em {
+    font-style: italic;
+    color: var(--gold-dark);
+  }
+
+  .section-header p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* ── SKILLS GRID ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .skill-card {
+    background: var(--white);
+    border: 1px solid var(--gold-light);
+    border-radius: 2px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--gold-light));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .skill-card:hover::before { opacity: 1; }
+
+  .skill-card.featured {
+    border-color: var(--gold);
+    background: linear-gradient(160deg, var(--white), #fdf8ef);
+  }
+
+  .skill-card.featured::before { opacity: 1; }
+
+  .featured-tag {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    background: var(--gold-light);
+    padding: 3px 10px;
+    border-radius: 1px;
+  }
+
+  .skill-icon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 1.5rem;
+    color: var(--gold);
+  }
+
+  .skill-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-card .tag-line {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .skill-card p {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-list {
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+
+  .feature-list li {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink);
+    padding: 0.4rem 0;
+    padding-left: 1.25rem;
+    position: relative;
+    border-bottom: 1px solid var(--surface);
+  }
+
+  .feature-list li:last-child { border-bottom: none; }
+
+  .feature-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 12px;
+  }
+
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--ink);
+  }
+
+  .price-note {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .btn-card {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--ink);
+    color: var(--parchment);
+    border: none;
+    border-radius: 1px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-card:hover { background: var(--gold-dark); }
+
+  .btn-card-outline {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--gold-light);
+    border-radius: 1px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-card-outline:hover { border-color: var(--gold); color: var(--gold-dark); }
+
+  /* ── HOW IT WORKS ── */
+  .how-section {
+    background: var(--surface);
+    border-top: 1px solid var(--gold-light);
+    border-bottom: 1px solid var(--gold-light);
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .step {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .step h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .step p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── TESTIMONIAL ── */
+  .testimonial-section {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+
+  blockquote::before { content: '\201C'; color: var(--gold-light); }
+  blockquote::after  { content: '\201D'; color: var(--gold-light); }
+
+  .testimonial-author {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .testimonial-author strong {
+    color: var(--gold-dark);
+    font-weight: 500;
+  }
+
+  /* ── FAQ ── */
+  .faq-grid {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--gold-light);
+  }
+
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.5rem 0;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--ink);
+    gap: 1rem;
+  }
+
+  .faq-q .icon {
+    font-size: 1.4rem;
+    color: var(--gold);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  .faq-item.open .faq-q .icon { transform: rotate(45deg); }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .faq-item.open .faq-a { max-height: 300px; }
+
+  .faq-a p {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+    padding-bottom: 1.5rem;
+  }
+
+  /* ── CTA BAND ── */
+  .cta-band {
+    background: var(--ink);
+    padding: 6rem 2rem;
+    text-align: center;
+  }
+
+  .cta-band .eyebrow { color: var(--gold); margin-bottom: 1rem; }
+
+  .cta-band h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--parchment);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .cta-band h2 em { font-style: italic; color: var(--gold); }
+
+  .cta-band p {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(245,241,232,0.6);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+  }
+
+  .btn-gold {
+    display: inline-block;
+    padding: 14px 36px;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 1px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-gold:hover { background: var(--gold-dark); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--white);
+    border-top: 1px solid var(--gold-light);
+    padding: 2.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  footer p {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: var(--gold-dark); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(30,29,27,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--white);
+    border: 1px solid var(--gold-light);
+    border-radius: 2px;
+    max-width: 480px;
+    width: 100%;
+    padding: 3rem 2.5rem;
+    position: relative;
+    animation: modalIn 0.25s ease;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .modal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--gold-light));
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: var(--muted);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+
+  .modal-close:hover { color: var(--ink); }
+
+  .modal h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal h3 em { font-style: italic; color: var(--gold-dark); }
+
+  .modal .subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .form-row { margin-bottom: 1rem; }
+
+  .form-row label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .form-row input,
+  .form-row select,
+  .form-row textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--gold-light);
+    border-radius: 1px;
+    background: var(--parchment);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-row input:focus,
+  .form-row select:focus,
+  .form-row textarea:focus { border-color: var(--gold); }
+
+  .form-row textarea { min-height: 80px; resize: vertical; }
+
+  .modal-submit {
+    display: block;
+    width: 100%;
+    padding: 13px 20px;
+    background: var(--ink);
+    color: var(--parchment);
+    border: none;
+    border-radius: 1px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background 0.2s;
+  }
+
+  .modal-submit:hover { background: var(--gold-dark); }
+
+  .modal-success { display: none; text-align: center; }
+  .modal-success .check {
+    width: 56px; height: 56px;
+    margin: 0 auto 1.5rem;
+  }
+  .modal-success h3 em { color: var(--gold-dark); }
+  .modal-success p {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-top: 0.75rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    nav { padding: 1.25rem 1.5rem; }
+    .nav-links { display: none; }
+    .trust-bar { gap: 2rem; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Property · Agent Skills</span>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#skills" class="nav-cta">Browse Skills</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="eyebrow">Prebuilt Agent Skills · Central London Properties</p>
+  <h1>Automate your property<br>business with <em>ready-made</em><br>AI agents</h1>
+  <p>Done-for-you automation skills built specifically for short-term rental hosts. Deploy in minutes. No code needed.</p>
+  <div class="hero-actions">
+    <a href="#skills" class="btn-primary">See all skills</a>
+    <a href="#how" class="btn-outline">How it works</a>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="number">6</div>
+    <div class="label">Prebuilt skills</div>
+  </div>
+  <div class="trust-item">
+    <div class="number">∞</div>
+    <div class="label">Properties</div>
+  </div>
+  <div class="trust-item">
+    <div class="number">5★</div>
+    <div class="label">Review optimised</div>
+  </div>
+  <div class="trust-item">
+    <div class="number">24h</div>
+    <div class="label">Deploy time</div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <p class="eyebrow">What's available</p>
+    <h2>Prebuilt skills, <em>ready to deploy</em></h2>
+    <p>Each skill is a fully working AI automation, customised to your property and brand. Purchase once, use forever.</p>
+  </div>
+
+  <div class="skills-grid">
+
+    <!-- Skill 1 -->
+    <div class="skill-card featured">
+      <span class="featured-tag">Most popular</span>
+      <svg class="skill-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="22" r="20" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M14 22l5 5 11-11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h3>Guest Review Funnel</h3>
+      <p class="tag-line">Capture · Route · Amplify</p>
+      <p>Automatically routes 5-star guests to Airbnb and collects private feedback from unhappy guests before they go public.</p>
+      <ul class="feature-list">
+        <li>Branded review collection page</li>
+        <li>5-star redirect to Airbnb / Booking.com</li>
+        <li>Private feedback capture for low scores</li>
+        <li>Email delivery of feedback to host</li>
+        <li>Matches your property branding</li>
+      </ul>
+      <div class="price-row">
+        <span class="price">£149</span>
+        <span class="price-note">one-time · per property</span>
+      </div>
+      <a href="javascript:void(0)" class="btn-card" onclick="openModal('Guest Review Funnel', '£149')">Get this skill</a>
+    </div>
+
+    <!-- Skill 2 -->
+    <div class="skill-card">
+      <svg class="skill-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 36L22 8l14 28" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13 26h18" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <h3>AI SEO Audit Agent</h3>
+      <p class="tag-line">Audit · Rank · Convert</p>
+      <p>Analyses your Airbnb or direct booking listing and delivers a prioritised SEO action plan to improve visibility and bookings.</p>
+      <ul class="feature-list">
+        <li>Full listing SEO scan</li>
+        <li>Keyword gap analysis</li>
+        <li>Title & description rewrites</li>
+        <li>Photo alt-text suggestions</li>
+        <li>Competitor benchmarking</li>
+      </ul>
+      <div class="price-row">
+        <span class="price">£99</span>
+        <span class="price-note">one-time report</span>
+      </div>
+      <a href="javascript:void(0)" class="btn-card" onclick="openModal('AI SEO Audit Agent', '£99')">Get this skill</a>
+    </div>
+
+    <!-- Skill 3 -->
+    <div class="skill-card">
+      <svg class="skill-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="12" width="28" height="20" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M8 18h28" stroke="currentColor" stroke-width="1.2"/>
+        <circle cx="14" cy="15" r="1.5" fill="currentColor"/>
+        <circle cx="20" cy="15" r="1.5" fill="currentColor"/>
+      </svg>
+      <h3>Direct Booking Website</h3>
+      <p class="tag-line">Build · Launch · Own</p>
+      <p>A fully functional direct booking site cloned from top-performing hospitality sites, customised to your property in 24 hours.</p>
+      <ul class="feature-list">
+        <li>Mobile-first responsive design</li>
+        <li>Integrated booking enquiry form</li>
+        <li>Property gallery & amenities</li>
+        <li>Google-friendly meta tags</li>
+        <li>Zero platform commission</li>
+      </ul>
+      <div class="price-row">
+        <span class="price">£249</span>
+        <span class="price-note">one-time setup</span>
+      </div>
+      <a href="javascript:void(0)" class="btn-card" onclick="openModal('Direct Booking Website', '£249')">Get this skill</a>
+    </div>
+
+    <!-- Skill 4 -->
+    <div class="skill-card">
+      <svg class="skill-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 8v28M8 22h28" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="22" cy="22" r="14" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+      <h3>Google Promotion Agent</h3>
+      <p class="tag-line">Promote · Target · Book</p>
+      <p>Sets up and optimises Google Ads campaigns for your direct booking site, targeting high-intent travellers in your area.</p>
+      <ul class="feature-list">
+        <li>Google Ads account setup</li>
+        <li>Keyword & audience targeting</li>
+        <li>Ad copy in 3 variants</li>
+        <li>Conversion tracking</li>
+        <li>Monthly performance report</li>
+      </ul>
+      <div class="price-row">
+        <span class="price">£199</span>
+        <span class="price-note">setup + £79/mo management</span>
+      </div>
+      <a href="javascript:void(0)" class="btn-card" onclick="openModal('Google Promotion Agent', '£199')">Get this skill</a>
+    </div>
+
+    <!-- Skill 5 -->
+    <div class="skill-card">
+      <svg class="skill-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 14h20M12 20h14M12 26h16" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <rect x="6" y="8" width="32" height="28" rx="2" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+      <h3>HMO Property Scout</h3>
+      <p class="tag-line">Find · Filter · Invest</p>
+      <p>Automated agent that scrapes Gumtree and Rightmove daily for HMO-suitable properties matching your investment criteria.</p>
+      <ul class="feature-list">
+        <li>Daily Gumtree & Rightmove scan</li>
+        <li>Custom filters: beds, price, area</li>
+        <li>HMO licensing check flags</li>
+        <li>Email digest of new matches</li>
+        <li>Google Sheets export</li>
+      </ul>
+      <div class="price-row">
+        <span class="price">£129</span>
+        <span class="price-note">one-time + £29/mo</span>
+      </div>
+      <a href="javascript:void(0)" class="btn-card" onclick="openModal('HMO Property Scout', '£129')">Get this skill</a>
+    </div>
+
+    <!-- Skill 6 — Bundle -->
+    <div class="skill-card" style="background: linear-gradient(160deg,#fdf8ef,var(--white)); border-color: var(--gold);">
+      <svg class="skill-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 6l4 9h9l-7 6 3 9-9-6-9 6 3-9-7-6h9z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+      </svg>
+      <h3>Full Host Bundle</h3>
+      <p class="tag-line">All 5 Skills · Best Value</p>
+      <p>Get every skill at a significant discount. The complete automation stack for serious short-term rental hosts.</p>
+      <ul class="feature-list">
+        <li>Guest Review Funnel</li>
+        <li>AI SEO Audit Agent</li>
+        <li>Direct Booking Website</li>
+        <li>Google Promotion Agent</li>
+        <li>HMO Property Scout</li>
+      </ul>
+      <div class="price-row">
+        <span class="price">£599</span>
+        <span class="price-note">save £226 · all 5 skills</span>
+      </div>
+      <a href="javascript:void(0)" class="btn-card" onclick="openModal('Full Host Bundle', '£599')">Get the bundle</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="section-header">
+    <p class="eyebrow">The process</p>
+    <h2>Deployed in <em>four steps</em></h2>
+    <p>From purchase to live automation in less than 24 hours.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Choose your skill</h4>
+      <p>Pick the automation that matches your most pressing need, or grab the bundle for full coverage.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Share your details</h4>
+      <p>We collect your property info, brand colours, and any specific preferences via a short onboarding form.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>We build &amp; customise</h4>
+      <p>Your skill is configured, tested, and tailored to your property within 24 hours of your brief.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4>You go live</h4>
+      <p>Receive your files, link, or campaign. We walk you through activation and are on hand for questions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section>
+  <div class="testimonial-section">
+    <div class="section-divider" style="margin-bottom: 3rem;"></div>
+    <blockquote>The review funnel alone paid for itself in the first month. We went from 4.7 to 4.95 stars on Airbnb within six weeks.</blockquote>
+    <p class="testimonial-author"><strong>Sarah M.</strong> &nbsp;·&nbsp; 3-property host, East London</p>
+    <div class="section-divider" style="margin-top: 3rem;"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="padding-top: 0;">
+  <div class="section-header">
+    <p class="eyebrow">Questions</p>
+    <h2>Frequently <em>asked</em></h2>
+  </div>
+
+  <div class="faq-grid">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Do I need any technical knowledge?
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>No. Each skill is delivered ready to use. For web-based skills we handle hosting; for software tools we provide a simple step-by-step activation guide.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Can the skills work for multiple properties?
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>The one-time fee covers a single property. Discounted multi-property licences are available — just mention it during checkout and we'll prepare a custom quote.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What platforms do the skills support?
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Airbnb, Booking.com, and direct booking sites are all supported. Some skills (like the SEO Audit) also cover Vrbo and Google Vacation Rentals.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        How do I receive the skill after purchase?
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>After checkout you'll receive an onboarding form. Once completed, your customised skill is delivered by email within 24 hours, typically much sooner.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Is there ongoing support included?
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Every skill includes 30 days of email support from the date of delivery. Extended support and retainer plans are available for bundle customers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <p class="eyebrow">Ready to automate?</p>
+  <h2>Start with one skill.<br><em>Scale when you're ready.</em></h2>
+  <p>No subscriptions to start. Buy a skill once, use it for the life of your property.</p>
+  <a href="#skills" class="btn-gold">Browse all skills</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="logo">Property · Agent Skills</span>
+  <p>Built for Central London hosts · <a href="mailto:zoya@hamzopi.co.uk">zoya@hamzopi.co.uk</a></p>
+  <p style="font-size:11px;">© 2026 · All rights reserved</p>
+</footer>
+
+<!-- MODAL: Get this skill -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+
+    <!-- Form -->
+    <div id="modalForm">
+      <p class="eyebrow" style="margin-bottom:0.75rem;">Purchase</p>
+      <h3>Get <em id="modalSkillName">this skill</em></h3>
+      <p class="subtitle">Fill in your details and we'll send your onboarding form within the hour.</p>
+
+      <div class="form-row">
+        <label>Your name</label>
+        <input type="text" id="m-name" placeholder="First and last name">
+      </div>
+      <div class="form-row">
+        <label>Email address</label>
+        <input type="email" id="m-email" placeholder="you@email.com">
+      </div>
+      <div class="form-row">
+        <label>Property (optional)</label>
+        <input type="text" id="m-property" placeholder="e.g. 2-bed flat, Shoreditch">
+      </div>
+      <div class="form-row">
+        <label>Message (optional)</label>
+        <textarea id="m-message" placeholder="Any questions or special requirements..."></textarea>
+      </div>
+
+      <p style="font-size:12px; color:var(--muted); margin-top:0.5rem;">Skill: <strong id="modalSkillSummary"></strong></p>
+
+      <button class="modal-submit" onclick="submitModal()">Send enquiry →</button>
+    </div>
+
+    <!-- Success -->
+    <div class="modal-success" id="modalSuccess">
+      <svg class="check" viewBox="0 0 56 56" fill="none">
+        <circle cx="28" cy="28" r="26" stroke="#C2A56B" stroke-width="1.5"/>
+        <path d="M17 28l8 8 14-14" stroke="#C2A56B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h3>Enquiry <em>received</em></h3>
+      <p>Thank you! We'll send your onboarding form to your email within the hour. Check your inbox — and your spam folder just in case.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // FAQ toggle
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+
+  // Modal
+  let currentSkill = '';
+  let currentPrice = '';
+
+  function openModal(skill, price) {
+    currentSkill = skill;
+    currentPrice = price;
+    document.getElementById('modalSkillName').textContent = skill;
+    document.getElementById('modalSkillSummary').textContent = skill + ' · ' + price;
+    document.getElementById('modalForm').style.display = 'block';
+    document.getElementById('modalSuccess').style.display = 'none';
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOnOverlay(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  function submitModal() {
+    const name  = document.getElementById('m-name').value.trim();
+    const email = document.getElementById('m-email').value.trim();
+
+    if (!name || !email) {
+      if (!name)  document.getElementById('m-name').style.borderColor  = 'var(--gold)';
+      if (!email) document.getElementById('m-email').style.borderColor = 'var(--gold)';
+      return;
+    }
+
+    // Send to a form handler e.g. Formspree:
+    // fetch('https://formspree.io/f/YOUR_ID', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     skill: currentSkill, price: currentPrice,
+    //     name, email,
+    //     property: document.getElementById('m-property').value,
+    //     message: document.getElementById('m-message').value
+    //   })
+    // });
+
+    document.getElementById('modalForm').style.display = 'none';
+    document.getElementById('modalSuccess').style.display = 'block';
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
